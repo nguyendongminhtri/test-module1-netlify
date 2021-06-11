@@ -3,56 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .title{
+            border-radius: 10px;
+            margin-bottom: 10px;
+            text-align:center;
+            width: 210px;
+            color:#ff4456;
+            border: solid black 1px;
+        }
+        input[type="button"]
+        {
+            border-radius: 10px;
+            background-color:#ff4456;
+            color: black;
+            border-color:#ff4456 ;
+            width:100%;
+        }
+        input[type="text"]
+        {
+            border-radius: 10px;
+            text-align: right;
+            background-color:white;
+            border-color: black ;
+            width:100%
+        }
+    </style>
 </head>
-<body  onload="docReady()">
-
-
-
-<!--    <form>-->
-<!--        <img id="myImage" src="image/lich-thi-dau-29-3-2218.jpg" height="100" width="100"/>-->
-<!--        <p>Click button below to move the image to right</p>-->
-<!--        <input type="button" value="Right" onclick="moveRight()"/>-->
-<!--        <button type="submit"  value="Left" onclick="moveLeft()">Left</button>-->
-<!--    </form>-->
-
-<img id="nobita" style="position:absolute;left:0; top:0;" height="100" width="80" src="image/lich-thi-dau-29-3-2218.jpg" height="371" width="690"/>
+<body>
+<div class = title >Edureka JavaScript Calculator</div>
+<table border="1">
+    <tr>
+        <td><input type="button" value="c" onclick="clr()"/> </td>
+        <td colspan="3"><input type="text" id="edu"/></td>
+        <!-- clr() function will call clr to clear all value -->
+    </tr>
+    <tr>
+        <!-- creating buttons and assigning values-->
+        <td><input type="button" value="+" onclick="dis('+')"/> </td>
+        <td><input type="button" value="1" onclick="dis('1')"/> </td>
+        <td><input type="button" value="2" onclick="dis('2')"/> </td>
+        <td><input type="button" value="3" onclick="dis('3')"/> </td>
+    </tr>
+    <tr>
+        <td><input type="button" value="-" onclick="dis('-')"/> </td>
+        <td><input type="button" value="4" onclick="dis('4')"/> </td>
+        <td><input type="button" value="5" onclick="dis('5')"/> </td>
+        <td><input type="button" value="6" onclick="dis('6')"/> </td>
+    </tr>
+    <tr>
+        <td><input type="button" value="*" onclick="dis('*')"/> </td>
+        <td><input type="button" value="7" onclick="dis('7')"/> </td>
+        <td><input type="button" value="8" onclick="dis('8')"/> </td>
+        <td><input type="button" value="9" onclick="dis('9')"/> </td>
+    </tr>
+    <tr>
+        <td><input type="button" value="/" onclick="dis('/')"/> </td>
+        <td><input type="button" value="." onclick="dis('.')"/> </td>
+        <td><input type="button" value="0" onclick="dis('0')"/> </td>
+        <!-- Evaluating function call eval()-->
+        <td><input type="button" value="=" onclick="solve()"/> </td>
+    </tr>
+</table>
 </body>
 <script>
-    function upArrowPressed() {
-        let element = document.getElementById("nobita");
-        element.style.top = parseInt(element.style.top) - 5 + 'px';
-    }
-    function downArrowPressed() {
-        var element = document.getElementById("nobita");
-        element.style.top = parseInt(element.style.top) + 5 + 'px';
-    }
-    function leftArrowPressed() {
-        var element = document.getElementById("nobita");
-        element.style.left = parseInt(element.style.left) - 5 + 'px';
-    }
-    function rightArrowPressed() {
-        var element = document.getElementById("nobita");
-        element.style.left = parseInt(element.style.left) + 5 + 'px';
+    //function for displaying values
+    function dis(val)
+    {
+        console.log('val = ',val);
+     // document.getElementById("edu").value = document.getElementById("edu").value+val;
+        document.getElementById("edu").value+=val;
 
+        // console.log('check = ',document.getElementById("edu").value+=val)
     }
-    function moveSelection(evt) {
-        switch (evt.keyCode) {
-            case 37:
-                leftArrowPressed();
-                break;
-            case 39:
-                rightArrowPressed();
-                break;
-            case 38:
-                upArrowPressed();
-                break;
-            case 40:
-                downArrowPressed();
-                break;
-        }
+    //function for evaluation
+    function solve()
+    {
+        let x = document.getElementById("edu").value
+        console.log('x =',x)
+        let y = eval(x)
+        console.log('y = ', y)
+        document.getElementById("edu").value = y
     }
-    function docReady() {
-        window.addEventListener('keydown', moveSelection);
+    //function for clearing the display
+    function clr()
+    {
+        document.getElementById("edu").value = ""
     }
 </script>
 </html>
